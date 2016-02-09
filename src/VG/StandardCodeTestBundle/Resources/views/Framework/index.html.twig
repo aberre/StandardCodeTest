@@ -1,2 +1,24 @@
-<h1>App</h1>
-{% block content %}{% endblock %}
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.min.css">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+
+    <body>
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <ul class="menu">
+                    <li><a href="{{ path('varnish_log') }}">Varnish log</a></li>
+                    <li><a href="{{  path('rss_list') }}">RSS Feed</a></li>
+                    <li><a href="{{ path('json_list') }}">JSON Feed</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="medium-12 columns"></div>
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.min.js" async defer></script>
+    </body>
+</html>
