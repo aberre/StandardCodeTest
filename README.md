@@ -24,12 +24,14 @@ git clone git@github.com:2129798/StandardCodeTest.git
 curl -sS https://getcomposer.org/installer | php
 ```
 
-4. Run the composer install commando to set up the app
+4. Create an database for the app, you will be prompted for connection details in step 5.
+
+5. Run the composer install commando to set up the app
 ```
 php composer.phar install
 ```
 
-5. Follow the instructions on the screen
+6. Follow the instructions on the screen
 
-6. You are now all set to view the app
+7. You are now all set to view the app
 
