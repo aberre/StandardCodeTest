@@ -28,7 +28,7 @@ class VarnishLogServiceTest extends WebTestCase
 
         $varnishLogService = $container->get('standard_code_test.varnishlog');
 
-        $this->assertEquals(5, $varnishLogService->getTopHosts(5));
-        $this->assertEquals(5, $varnishLogService->getTopDownloaded(5));
+        $this->assertEquals(5, count($varnishLogService->getTopHosts(5)));
+        $this->assertEquals(5, count($varnishLogService->getTopDownloaded(5)));
     }
 }
