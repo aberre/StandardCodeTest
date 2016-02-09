@@ -1,0 +1,13 @@
+<h2>Top 5 hosts</h2>
+<ol>
+    {% for host in hosts %}
+        <li>{{ host.host }} ({{ host.sums }})</li>
+    {% endfor %}
+</ol>
+
+<h2>Top 5 downloads</h2>
+<ol>
+    {% for download in downloads %}
+        <li>{{ download.requestUri }} ({{ download.sums }})</li>
+    {% endfor %}
+</ol>
