@@ -1,0 +1,4 @@
+services:
+#    standard_code_test.example:
+#        class: VG\StandardCodeTestBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
