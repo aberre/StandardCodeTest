@@ -29,13 +29,6 @@ class VarnishLog
     private $host;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="Timestamp", type="datetime")
-     */
-    private $timestamp;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="RequestUri", type="text")
