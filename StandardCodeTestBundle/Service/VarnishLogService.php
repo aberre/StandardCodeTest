@@ -51,4 +51,18 @@ class VarnishLogService
             ->getQuery()
             ->getSingleScalarResult();
     }
+    public function getTopHosts( $limit=5 ) {
+        $connection = $this->em->getConnection();
+        $statement = $connection->prepare("SELECT count(*) as sums, vl.host FROM varnish_log as vl GROUP BY vl.host ORDER BY sums DESC LIMIT :limit");
+        $statement->bindValue('limit', $limit, \PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetchAll();
+    }
+    public function getTopDownloaded( $limit=5 ) {
+        $connection = $this->em->getConnection();
+        $statement = $connection->prepare("SELECT count(*) as sums, vl.requestUri FROM varnish_log as vl GROUP BY vl.requestUri ORDER BY sums DESC LIMIT :limit");
+        $statement->bindValue('limit', $limit, \PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetchAll();
+    }
 }

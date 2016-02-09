@@ -1,6 +1,7 @@
 <?php
 namespace VG\StandardCodeTestBundle\Controller;
 
+use Doctrine\Common\Util\Debug;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,11 +16,12 @@ class TabViewController extends Controller
 
 
 
-        $this->get('standard_code_test.varnishlog')->run($this->get('standard_code_test.dataservice')->call('http://tech.vg.no/intervjuoppgave/varnish.log'));
+        $logs = $this->get('standard_code_test.varnishlog')->getTopDownloaded(5);
+
         return $this->render(
             'StandardCodeTestBundle:Tabs:varnish.html.twig',
             array(
-                'items' => $varnishLog->getStats()
+                'items' => ''
             )
         );
     }
