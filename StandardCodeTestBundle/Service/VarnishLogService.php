@@ -13,30 +13,27 @@ class VarnishLogService
         $this->em = $em;
         $this->repo = $this->em->getRepository('StandardCodeTestBundle:VarnishLog');
     }
-
-    public function setLogData($rawText) {
-        echo $rawText;
-    }
-    public function run($log)
+    public function importData($log)
     {
         $parser = new \Kassner\LogParser\LogParser();
 
         $parser->setFormat('%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"');
-        $this->truncateLog();
+
         $lines = explode("\n", $log);
         foreach ($lines as $line) {
-            $entry = $parser->parse($line);
-            $requestURIParts = explode(' ', $entry->request);
+            if ( strlen(trim($line)) > 0 ) {
+                $entry = $parser->parse($line);
+                $requestURIParts = explode(' ', $entry->request);
 
-            $logLine = new VarnishLog();
-            $logLine->setHost($entry->host);
-            $logLine->setReferer($entry->HeaderReferer);
-            $logLine->setRequestUri($requestURIParts[1]);
-            $logLine->setStatus($entry->status);
-            $logLine->setUserAgent($entry->HeaderUseragent);
-            $logLine->setTimestamp(new \DateTime($entry->time));
-            $this->em->persist($logLine);
-            $this->em->flush();
+                $logLine = new VarnishLog();
+                $logLine->setHost($entry->host);
+                $logLine->setReferer($entry->HeaderReferer);
+                $logLine->setRequestUri($requestURIParts[1]);
+                $logLine->setStatus($entry->status);
+                $logLine->setUserAgent($entry->HeaderUseragent);
+                $this->em->persist($logLine);
+                $this->em->flush();
+            }
         }
     }
     public function truncateLog() {
@@ -47,5 +44,11 @@ class VarnishLogService
         $q = $dbPlatform->getTruncateTableSql('varnish_log');
         $connection->executeUpdate($q);
         $connection->query('SET FOREIGN_KEY_CHECKS=1');
+    }
+    public function countRows() {
+        return $this->repo->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 }
