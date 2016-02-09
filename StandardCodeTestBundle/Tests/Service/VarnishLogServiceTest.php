@@ -21,4 +21,14 @@ class VarnishLogServiceTest extends WebTestCase
 
         $this->assertGreaterThan(0, $varnishLogService->countRows());
     }
+    public function testCalculateStatsFromVarnishLog() {
+
+        $client = static::createClient();
+        $container = $client->getContainer();
+
+        $varnishLogService = $container->get('standard_code_test.varnishlog');
+
+        $this->assertEquals(5, $varnishLogService->getTopHosts(5));
+        $this->assertEquals(5, $varnishLogService->getTopDownloaded(5));
+    }
 }
