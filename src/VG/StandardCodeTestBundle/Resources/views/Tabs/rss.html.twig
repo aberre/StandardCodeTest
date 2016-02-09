@@ -1,3 +1,14 @@
-{% for item in items.channel.item %}
-    {{ item.title }} <br />
-{%  endfor %}
+{%  extends 'StandardCodeTestBundle:Framework:index.html.twig' %}
+{% block title %}RSS Feed{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="medium-12 columns">
+            <h1>Json Feed</h1>
+            <ul class="no-bullet">
+                {% for item in items.channel.item %}
+                    <li><a href="{{ item.link }}">{{ item.title }}</a> {{ item.pubDate }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
