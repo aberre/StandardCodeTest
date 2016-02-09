@@ -1,3 +1,7 @@
 services:
     standard_code_test.dataservice:
         class: VG\StandardCodeTestBundle\Service\DataService
+    standard_code_test.varnishlog:
+            class: VG\StandardCodeTestBundle\Service\VarnishLogService
+            arguments:
+              - "@doctrine.orm.entity_manager"

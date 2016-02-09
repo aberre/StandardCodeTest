@@ -45,11 +45,8 @@ class DataService
                 return json_decode($this->response);
             case 'application/rss+xml':
                 return  simplexml_load_string($this->response);
-            case 'text/plain':
-               
-                break;
             default:
-                return '';
+                return $this->response;
         }
     }
 }
