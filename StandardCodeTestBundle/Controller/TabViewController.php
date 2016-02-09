@@ -11,10 +11,15 @@ class TabViewController extends Controller
      * @Route("/varnish", name="varnish_log")
      */
     public function varnishAction() {
+      //  $varnishLog = $this->get('standard_code_test.varnishlog')->setLogData($this->get('standard_code_test.dataservice')->call('http://tech.vg.no/intervjuoppgave/varnish.log'));
+
+
+
+        $this->get('standard_code_test.varnishlog')->run($this->get('standard_code_test.dataservice')->call('http://tech.vg.no/intervjuoppgave/varnish.log'));
         return $this->render(
             'StandardCodeTestBundle:Tabs:varnish.html.twig',
             array(
-                'items' => $this->get('standard_code_test.dataservice')->call('http://tech.vg.no/intervjuoppgave/varnish.log')
+                'items' => $varnishLog->getStats()
             )
         );
     }
