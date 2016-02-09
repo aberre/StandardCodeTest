@@ -1,0 +1,30 @@
+{
+  "name": "2129798/StandardCodeTest",
+  "type": "symfony-bundle",
+  "description": "Standard Code Test from 2129798"
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/2129798/StandardCodeTest.git"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.18",
+    "symfony/config": "2.8",
+    "debril/rss-atom-bundle": "2.2"
+  },
+  "autoload": {
+    "psr-0": {
+      "VG\\StandardCodeTestBundle": ""
+    }
+  },
+  "target-dir": "VG/StandardCodeTestBundle",
+  "config": {
+    "bin-dir": "bin"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0"
+    }
+  }
+}
