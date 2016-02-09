@@ -1,0 +1,9 @@
+standard_code_test:
+    resource: "@StandardCodeTestBundle/Controller/"
+    type: annotation
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+feedio:
+    resource: @DebrilRssAtomBundle/Resources/config/routing.xml
