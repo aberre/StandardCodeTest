@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 class TabViewController extends Controller
 {
     /**
-     * @Route("/varnish", name="varnish_log")
+     * @Route("/", name="varnish_log")
      */
     public function varnishAction() {
 
