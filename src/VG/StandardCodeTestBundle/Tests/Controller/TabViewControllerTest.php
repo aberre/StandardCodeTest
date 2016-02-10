@@ -23,4 +23,31 @@ class TabViewControllerTest extends WebTestCase
         $crawler = $client->click($varnishLink);
         $this->assertEquals('Varnish Log', $crawler->filter('h1')->first()->text());
     }
+    public function testVarnishView() {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/');
+
+        $this->assertEquals('The top 5 most visited hosts', $crawler->filter('h3')->eq(0)->text());
+        $this->assertEquals('The top 5 most downloaded files', $crawler->filter('h3')->eq(1)->text());
+
+        $topHostsCount = $crawler->filter('ol')->eq(0)->children()->count();
+        $topDownloadsCount = $crawler->filter('ol')->eq(1)->children()->count();
+
+        $this->assertEquals(5, $topHostsCount);
+        $this->assertEquals(5, $topDownloadsCount);
+    }
+    public function testRSSView() {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/rss');
+
+        $this->assertEquals('RSS Feed', $crawler->filter('h1')->first()->text());
+        $this->assertGreaterThan(0, $crawler->filter('ul')->first()->children()->count());
+    }
+    public function testJsonView() {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/json');
+
+        $this->assertEquals('Json Feed', $crawler->filter('h1')->first()->text());
+        $this->assertGreaterThan(0, $crawler->filter('ul')->first()->children()->count());
+    }
 }
