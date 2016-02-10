@@ -6,6 +6,7 @@ VG StandardCodeTest
 ## Requirements
 * SQL-database
 * PHP >=5.3.9
+* phpunit (for testing)
 
 ## Installation guide
 
@@ -38,7 +39,7 @@ You are now all set to view the app
 
 ## Testing
 
-To run test the App type following in the root of the app
+To test the App type following in the root of the app (phpunit is needed)
 
 ```
 phpunit -c app
