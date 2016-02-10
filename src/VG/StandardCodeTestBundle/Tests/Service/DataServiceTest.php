@@ -16,9 +16,10 @@ class DataServiceTest extends WebTestCase
     public function testConnectionAndResponseDataForRSSFeed()
     {
         $client = static::createClient();
+        $container = $client->getContainer();
 
         $dataService = new DataService();
-        $dataService->call('http://www.vg.no/rss/feed/forsiden/?frontId=1');
+        $dataService->call($container->getParameter('rss_url'));
 
         $this->assertEquals(200, $dataService->getStatusCode());
         $this->assertEquals("application/rss+xml", $dataService->getResponseType());
@@ -27,9 +28,10 @@ class DataServiceTest extends WebTestCase
     public function testConnectionAndResponseDataForJsonFeed()
     {
         $client = static::createClient();
+        $container = $client->getContainer();
 
         $dataService = new DataService();
-        $dataService->call('http://rexxars.com/playground/testfeed/');
+        $dataService->call($container->getParameter('json_url'));
 
         $this->assertEquals(200, $dataService->getStatusCode());
         $this->assertEquals("application/json", $dataService->getResponseType());
@@ -39,10 +41,11 @@ class DataServiceTest extends WebTestCase
     public function testConnectionAndResponseDataForVarnishLog()
     {
         $client = static::createClient();
+        $container = $client->getContainer();
 
         $dataService = new DataService();
-        $dataService->call('http://tech.vg.no/intervjuoppgave/varnish.log');
-
+        $dataService->call($container->getParameter('varnish_log_url'));
+        
         $this->assertEquals(200, $dataService->getStatusCode());
         $this->assertEquals("text/plain", $dataService->getResponseType());
     }
