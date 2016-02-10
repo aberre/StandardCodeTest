@@ -1,16 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: andersberre
- * Date: 09.02.2016
- * Time: 20.10
- */
 
 namespace VG\StandardCodeTestBundle\Tests\Service;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use VG\StandardCodeTestBundle\Service\DataService;
 
+/**
+ * Functional tests to check connection to 3rd part data storage and their response type.
+ *
+ */
 class DataServiceTest extends WebTestCase
 {
     public function testConnectionAndResponseDataForRSSFeed()
@@ -45,7 +43,7 @@ class DataServiceTest extends WebTestCase
 
         $dataService = new DataService();
         $dataService->call($container->getParameter('varnish_log_url'));
-        
+
         $this->assertEquals(200, $dataService->getStatusCode());
         $this->assertEquals("text/plain", $dataService->getResponseType());
     }

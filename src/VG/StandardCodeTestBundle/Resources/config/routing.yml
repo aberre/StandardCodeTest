@@ -1,3 +1,0 @@
-standard_code_test_homepage:
-    path:     /
-    defaults: { _controller: StandardCodeTest:TabView:varnish }
