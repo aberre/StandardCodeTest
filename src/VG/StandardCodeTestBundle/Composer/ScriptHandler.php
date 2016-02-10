@@ -20,5 +20,6 @@ class ScriptHandler extends \Sensio\Bundle\DistributionBundle\Composer\ScriptHan
             return;
         }
         static::executeCommand($event, $consoleDir, 'doctrine:schema:create');
+        static::executeCommand($event, $consoleDir, 'vg:install');
     }
 }
