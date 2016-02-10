@@ -13,6 +13,11 @@ class InstallCommand extends ContainerAwareCommand
             ->setName('vg:install')
             ->setDescription('Install the app');
     }
+
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $container = $this->getContainer();
