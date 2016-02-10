@@ -1,9 +1,7 @@
 <?php
 
-
 namespace VG\StandardCodeTestBundle\Composer;
 use Composer\Script\CommandEvent;
-
 
 class ScriptHandler extends \Sensio\Bundle\DistributionBundle\Composer\ScriptHandler {
 

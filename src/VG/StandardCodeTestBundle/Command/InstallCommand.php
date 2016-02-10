@@ -21,7 +21,7 @@ class InstallCommand extends ContainerAwareCommand
         $varnishLogService->truncateLog();
 
         $varnishRawLog = $container->get('standard_code_test.dataservice')->call( $container->getParameter('varnish_log_url') );
-        $varnishLogService->importData($varnishRawLog);
+        $varnishLogService->importDataFromLogFile($varnishRawLog);
 
         $output->writeln('<info>Temporary Varnish Log written to database</info>');
 
