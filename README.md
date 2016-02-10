@@ -42,4 +42,8 @@ To run test the App type following in the root of the app
 
 ```
 phpunit -c app
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> 1dbb95db3e2eadfa3a51d60fb89b90cacc4d0f8e
