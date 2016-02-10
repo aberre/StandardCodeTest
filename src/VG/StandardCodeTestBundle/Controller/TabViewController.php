@@ -1,10 +1,8 @@
 <?php
 namespace VG\StandardCodeTestBundle\Controller;
 
-use Doctrine\Common\Util\Debug;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 class TabViewController extends Controller
 {

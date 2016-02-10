@@ -5,6 +5,7 @@
     <div class="row">
         <div class="medium-6 columns">
             <h3>The top 5 most visited hosts</h3>
+
             <ol class="no-bullet">
                 {% for host in hosts %}
                     <li><span class="secondary label">{{ host.sums }}</span> {{ host.host }}</li>
@@ -13,6 +14,7 @@
         </div>
         <div class="medium-6 columns">
             <h3>The top 5 most downloaded files</h3>
+
             <ol class="no-bullet">
                 {% for download in downloads %}
                     <li><span class="secondary label">{{ download.sums }}</span> {{ download.requestUri }}</li>

@@ -22,7 +22,7 @@ class VarnishLogServiceTest extends WebTestCase
         $this->assertEquals(0, $varnishLogService->countRows());
 
         $varnishRawLog = $container->get('standard_code_test.dataservice')->call( $container->getParameter('varnish_log_url') );
-        $varnishLogService->importData($varnishRawLog);
+        $varnishLogService->importDataFromLogFile($varnishRawLog);
 
         $this->assertGreaterThan(0, $varnishLogService->countRows());
     }
