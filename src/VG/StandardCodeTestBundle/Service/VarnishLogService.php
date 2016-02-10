@@ -13,7 +13,7 @@ class VarnishLogService
         $this->em = $em;
         $this->repo = $this->em->getRepository('StandardCodeTestBundle:VarnishLog');
     }
-    public function importData($log)
+    public function importDataFromLogFile($log)
     {
         $parser = new \Kassner\LogParser\LogParser();
         $parser->setFormat('%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"');
@@ -38,7 +38,6 @@ class VarnishLogService
         }
     }
     public function truncateLog() {
-
         $connection = $this->em->getConnection();
         $dbPlatform = $connection->getDatabasePlatform();
         $connection->query('SET FOREIGN_KEY_CHECKS=0');
