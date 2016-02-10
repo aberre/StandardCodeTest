@@ -1,14 +1,10 @@
 parameters:
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     symfony
-    database_user:     root
+    database_name:     ~
+    database_user:     ~
     database_password: ~
     secret: SetYourSecretTokenForSecurityReasons
-    mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
     rss_url: http://www.vg.no/rss/feed/forsiden/?frontId=1
     json_url: http://rexxars.com/playground/testfeed/
     varnish_log_url: http://tech.vg.no/intervjuoppgave/varnish.log
