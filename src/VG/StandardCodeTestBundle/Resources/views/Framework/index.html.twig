@@ -1,24 +1,27 @@
-<html>
-    <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.min.css">
-        <title>{% block title %}{% endblock %}</title>
-    </head>
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <body>
-        <div class="top-bar">
-            <div class="top-bar-left">
-                <ul class="menu">
-                    <li><a href="{{ path('varnish_log') }}">Varnish log</a></li>
-                    <li><a href="{{  path('rss_list') }}">RSS Feed</a></li>
-                    <li><a href="{{ path('json_list') }}">JSON Feed</a></li>
-                </ul>
-            </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.min.css">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <ul class="menu">
+                <li><a href="{{ path('varnish_log') }}">Varnish log</a></li>
+                <li><a href="{{  path('rss_list') }}">RSS Feed</a></li>
+                <li><a href="{{ path('json_list') }}">JSON Feed</a></li>
+            </ul>
         </div>
-        <div class="row">
-            <div class="medium-12 columns"></div>
-                {% block content %}{% endblock %}
-            </div>
+    </div>
+    <div class="row">
+        <div class="medium-12 columns"></div>
+            {% block content %}{% endblock %}
         </div>
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.min.js" async defer></script>
-    </body>
+    </div>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.min.js" async defer></script>
+</body>
 </html>

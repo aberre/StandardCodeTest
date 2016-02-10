@@ -12,13 +12,8 @@ class DataService
     public function call($url) {
         $this->curl = curl_init();
 
-        // Return headers
         curl_setopt($this->curl, CURLOPT_HEADER, 0);
-
-        // Should cURL return or print out the data? (true = return, false = print)
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
-
-        // Set the url
         curl_setopt($this->curl, CURLOPT_URL, $url);
 
         $this->response = curl_exec($this->curl);
@@ -27,7 +22,6 @@ class DataService
         $contentType = explode(";", curl_getinfo($this->curl, CURLINFO_CONTENT_TYPE));
         $this->responseType = $contentType[0];
 
-        // Close the cURL resource, and free system resources
         curl_close($this->curl);
 
         return $this->getResponse();
