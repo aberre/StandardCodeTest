@@ -12,7 +12,6 @@ class TabViewController extends Controller
      * @Route("/", name="varnish_log")
      */
     public function varnishAction() {
-
         $varnishLogService = $this->get('standard_code_test.varnishlog');
         return $this->render(
             'StandardCodeTestBundle:Tabs:varnish.html.twig',
@@ -29,7 +28,7 @@ class TabViewController extends Controller
         return $this->render(
             'StandardCodeTestBundle:Tabs:rss.html.twig',
             array(
-                'items' => $this->get('standard_code_test.dataservice')->call('http://www.vg.no/rss/feed/forsiden/?frontId=1')
+                'items' => $this->get('standard_code_test.dataservice')->call( $this->getParameter('rss_url') )
             )
         );
     }
@@ -40,7 +39,7 @@ class TabViewController extends Controller
         return $this->render(
             'StandardCodeTestBundle:Tabs:json.html.twig',
             array(
-                'items' => $this->get('standard_code_test.dataservice')->call('http://rexxars.com/playground/testfeed/')
+                'items' => $this->get('standard_code_test.dataservice')->call( $this->getParameter('json_url') )
             )
         );
     }
