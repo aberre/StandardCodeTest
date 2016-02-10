@@ -2,13 +2,16 @@
 
 namespace VG\StandardCodeTestBundle\Service;
 
-
 class DataService
 {
     private $statusCode;
     private $responseType;
     private $response;
 
+    /**
+     * @param $url
+     * @return mixed|\SimpleXMLElement
+     */
     public function call($url) {
         $this->curl = curl_init();
 
@@ -26,12 +29,24 @@ class DataService
 
         return $this->getResponse();
     }
+
+    /**
+     * @return mixed
+     */
     public function getStatusCode() {
         return $this->statusCode;
     }
+
+    /**
+     * @return mixed
+     */
     public function getResponseType() {
         return $this->responseType;
     }
+
+    /**
+     * @return mixed|\SimpleXMLElement
+     */
     public function getResponse() {
 
         switch( $this->responseType ) {

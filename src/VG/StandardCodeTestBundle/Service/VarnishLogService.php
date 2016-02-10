@@ -13,6 +13,13 @@ class VarnishLogService
         $this->em = $em;
         $this->repo = $this->em->getRepository('StandardCodeTestBundle:VarnishLog');
     }
+
+    /**
+     * Insert Raw Varnish data into database
+     *
+     * @param $log
+     * @throws \Kassner\LogParser\FormatException
+     */
     public function importDataFromLogFile($log)
     {
         $parser = new \Kassner\LogParser\LogParser();
@@ -37,6 +44,10 @@ class VarnishLogService
             }
         }
     }
+
+    /**
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function truncateLog() {
         $connection = $this->em->getConnection();
         $dbPlatform = $connection->getDatabasePlatform();
@@ -45,12 +56,22 @@ class VarnishLogService
         $connection->executeUpdate($q);
         $connection->query('SET FOREIGN_KEY_CHECKS=1');
     }
+
+    /**
+     * @return mixed
+     */
     public function countRows() {
         return $this->repo->createQueryBuilder('u')
             ->select('count(u.id)')
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    /**
+     * @param int $limit
+     * @return array
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function getTopHosts( $limit=5 ) {
         $connection = $this->em->getConnection();
         $statement = $connection->prepare("SELECT count(*) as sums, vl.host FROM varnish_log as vl GROUP BY vl.host ORDER BY sums DESC LIMIT :limit");
@@ -58,6 +79,12 @@ class VarnishLogService
         $statement->execute();
         return $statement->fetchAll();
     }
+
+    /**
+     * @param int $limit
+     * @return array
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function getTopDownloaded( $limit=5 ) {
         $connection = $this->em->getConnection();
         $statement = $connection->prepare("SELECT count(*) as sums, vl.requestUri FROM varnish_log as vl GROUP BY vl.requestUri ORDER BY sums DESC LIMIT :limit");

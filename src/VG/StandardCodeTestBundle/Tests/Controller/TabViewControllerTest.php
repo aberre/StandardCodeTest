@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class TabViewControllerTest extends WebTestCase
 {
-    public function testNavigation() {
+    public function testAppNavigation() {
         $client = static::createClient();
         $crawler = $client->request('GET', '/');
         $this->assertEquals('Varnish Log', $crawler->filter('h1')->first()->text());
