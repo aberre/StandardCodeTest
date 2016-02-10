@@ -14,7 +14,7 @@ class ScriptHandler extends \Sensio\Bundle\DistributionBundle\Composer\ScriptHan
      */
     public static function installApp(CommandEvent $event) {
         $options = self::getOptions($event);
-        $consoleDir = self::getConsoleDir($event, 'hello world');
+        $consoleDir = self::getConsoleDir($event, 'Install App');
 
         if (null === $consoleDir) {
             return;

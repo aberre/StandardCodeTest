@@ -16,12 +16,12 @@ class VarnishLogService
     public function importData($log)
     {
         $parser = new \Kassner\LogParser\LogParser();
-
         $parser->setFormat('%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"');
 
         $lines = explode("\n", $log);
         foreach ($lines as $line) {
             if ( strlen(trim($line)) > 0 ) {
+
                 $entry = $parser->parse($line);
                 $requestURIParts = explode(' ', $entry->request);
 
@@ -31,6 +31,7 @@ class VarnishLogService
                 $logLine->setRequestUri($requestURIParts[1]);
                 $logLine->setStatus($entry->status);
                 $logLine->setUserAgent($entry->HeaderUseragent);
+
                 $this->em->persist($logLine);
                 $this->em->flush();
             }
