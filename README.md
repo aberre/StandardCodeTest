@@ -43,4 +43,3 @@ To run test the App type following in the root of the app
 ```
 phpunit -c app
 ```
-
