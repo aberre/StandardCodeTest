@@ -6,7 +6,7 @@
             <h1>RSS Feed</h1>
 
             <ul class="no-bullet">
-                {% for item in items.channel.item %}
+                {% for item in items %}
                     <li><a href="{{ item.link }}">{{ item.title }}</a> {{ item.pubDate }}</li>
                 {% endfor %}
             </ul>

@@ -1,6 +1,8 @@
 <?php
 
 namespace VG\StandardCodeTestBundle\Service;
+use \DateTime;
+use \DateTimeZone;
 
 class DataService
 {
@@ -51,11 +53,49 @@ class DataService
 
         switch( $this->responseType ) {
             case 'application/json':
-                return json_decode($this->response);
+                $items = json_decode($this->response);
+                foreach ($items as $key => $part) {
+                    $sort[$key] = strtotime($this->replaceNorwegianNamesWithEnglish($part->date) . ' ' . $part->time);
+                }
+                array_multisort($sort, SORT_DESC, $items);
+                return $items;
+
             case 'application/rss+xml':
-                return  simplexml_load_string($this->response);
+                $xmlArray =  simplexml_load_string($this->response);
+                $items = $xmlArray->xpath('//item');
+
+                foreach ($items as $key => $part) {
+                    $sort[$key] = strtotime($part->pubDate);
+                }
+                array_multisort($sort, SORT_DESC, $items);
+                return $items;
             default:
                 return $this->response;
         }
+    }
+
+    public function replaceNorwegianNamesWithEnglish( $dateString ) {
+
+        return str_replace(
+            array(
+                'januar',
+                'februar',
+                'mars',
+                'mai',
+                'juni',
+                'juli',
+                'oktober',
+                'desember'),
+            array(
+                'january',
+                'february',
+                'march',
+                'june',
+                'july',
+                'october',
+                'december'
+            ),
+            strtolower($dateString)
+        );
     }
 }
